@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../services/auth_service.dart';
 import 'transaction_list_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:expense_tracker/l10n/app_localizations.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});

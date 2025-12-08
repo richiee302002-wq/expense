@@ -5,7 +5,7 @@ import 'package:uuid/uuid.dart';
 import '../../domain/entities/transaction_entity.dart';
 import '../../core/di/providers.dart';
 import '../viewmodels/transaction_list_viewmodel.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:expense_tracker/l10n/app_localizations.dart';
 
 class AddEditTransactionScreen extends ConsumerStatefulWidget {
   final TransactionEntity? transaction;

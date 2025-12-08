@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../../domain/entities/transaction_entity.dart';
 import '../viewmodels/transaction_list_viewmodel.dart';
 import 'add_edit_transaction_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:expense_tracker/l10n/app_localizations.dart';
 
 class TransactionDetailScreen extends ConsumerWidget {
   final TransactionEntity transaction;

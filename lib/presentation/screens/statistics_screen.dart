@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodels/transaction_list_viewmodel.dart';
 import '../../domain/entities/transaction_entity.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:expense_tracker/l10n/app_localizations.dart';
 
 class StatisticsScreen extends ConsumerWidget {
   const StatisticsScreen({super.key});

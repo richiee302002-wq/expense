@@ -4,7 +4,7 @@ import '../viewmodels/transaction_list_viewmodel.dart';
 import 'add_edit_transaction_screen.dart';
 import 'transaction_detail_screen.dart';
 import 'statistics_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:expense_tracker/l10n/app_localizations.dart';
 
 import '../../services/deep_link_service.dart';
 
