@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodels/transaction_list_viewmodel.dart';
 import '../../domain/entities/transaction_entity.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StatisticsScreen extends ConsumerWidget {
   const StatisticsScreen({super.key});
@@ -12,7 +13,7 @@ class StatisticsScreen extends ConsumerWidget {
     final transactionListState = ref.watch(transactionListProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Statistics')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.statistics)),
       body: transactionListState.when(
         data: (transactions) {
           if (transactions.isEmpty) {

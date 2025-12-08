@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'presentation/screens/transaction_list_screen.dart';
+import 'presentation/screens/login_screen.dart';
 import 'services/notification_service.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'dart:async';
+import 'core/error/error_handler.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await NotificationService().init();
-  await NotificationService().scheduleDailyNotification();
+  runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await NotificationService().init();
+      await NotificationService().scheduleDailyNotification();
 
-  runApp(const ProviderScope(child: MyApp()));
+      runApp(const ProviderScope(child: MyApp()));
+    },
+    (error, stack) {
+      ErrorHandler.logError(error, stack);
+    },
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +34,17 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TransactionListScreen(),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('ta'), // Tamil
+      ],
+      home: const LoginScreen(),
     );
   }
 }

@@ -1,0 +1,22 @@
+{
+  "appTitle": "Expense Tracker",
+  "transactionListTitle": "Transactions",
+  "addTransaction": "Add Transaction",
+  "editTransaction": "Edit Transaction",
+  "amount": "Amount",
+  "category": "Category",
+  "note": "Note",
+  "save": "Save",
+  "transactionDetails": "Transaction Details",
+  "delete": "Delete",
+  "deleteConfirmation": "Are you sure you want to delete this transaction?",
+  "cancel": "Cancel",
+  "syncing": "Syncing...",
+  "loginEnterPin": "Enter your PIN",
+  "loginSetPin": "Set a 4-digit PIN",
+  "loginConfirmPin": "Confirm your PIN",
+  "loginPinMismatch": "PINs do not match. Try again.",
+  "loginIncorrectPin": "Incorrect PIN. Try again.",
+  "statistics": "Statistics",
+  "totalExpenses": "Total Expenses"
+}

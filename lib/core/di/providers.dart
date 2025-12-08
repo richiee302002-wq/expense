@@ -5,6 +5,7 @@ import '../../data/datasources/remote/remote_datasource.dart';
 import '../../data/repositories/transaction_repository_impl.dart';
 import '../../domain/repositories/transaction_repository.dart';
 import '../api_client.dart';
+export '../../services/auth_service.dart';
 
 // Database
 final appDatabaseProvider = Provider<AppDatabase>((ref) {

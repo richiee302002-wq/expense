@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:uuid/uuid.dart';
 import '../../domain/entities/transaction_entity.dart';
 import '../../core/di/providers.dart';
 import '../viewmodels/transaction_list_viewmodel.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddEditTransactionScreen extends ConsumerStatefulWidget {
   final TransactionEntity? transaction;
@@ -21,6 +23,7 @@ class _AddEditTransactionScreenState
   late TextEditingController _amountController;
   late TextEditingController _categoryController;
   late TextEditingController _noteController;
+  String? _attachmentPath;
 
   @override
   void initState() {
@@ -34,6 +37,7 @@ class _AddEditTransactionScreenState
     _noteController = TextEditingController(
       text: widget.transaction?.note ?? '',
     );
+    _attachmentPath = widget.transaction?.attachmentPath;
   }
 
   @override
@@ -42,6 +46,15 @@ class _AddEditTransactionScreenState
     _categoryController.dispose();
     _noteController.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickFile() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      setState(() {
+        _attachmentPath = result.files.single.path;
+      });
+    }
   }
 
   Future<void> _saveTransaction() async {
@@ -55,6 +68,7 @@ class _AddEditTransactionScreenState
             amount: amount,
             category: category,
             note: note,
+            attachmentPath: _attachmentPath,
             updatedAt: DateTime.now(),
             editedLocally: true,
           ) ??
@@ -64,6 +78,7 @@ class _AddEditTransactionScreenState
             category: category,
             ts: DateTime.now(),
             note: note,
+            attachmentPath: _attachmentPath,
             editedLocally: true,
             updatedAt: DateTime.now(),
           );
@@ -92,7 +107,9 @@ class _AddEditTransactionScreenState
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.transaction == null ? 'Add Transaction' : 'Edit Transaction',
+          widget.transaction == null
+              ? AppLocalizations.of(context)!.addTransaction
+              : AppLocalizations.of(context)!.editTransaction,
         ),
       ),
       body: Padding(
@@ -103,11 +120,13 @@ class _AddEditTransactionScreenState
             children: [
               TextFormField(
                 controller: _amountController,
-                decoration: const InputDecoration(labelText: 'Amount'),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.amount,
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter an amount';
+                    return 'Please enter an amount'; // Keeping validation simple for now or need more keys
                   }
                   if (double.tryParse(value) == null) {
                     return 'Please enter a valid number';
@@ -117,7 +136,9 @@ class _AddEditTransactionScreenState
               ),
               TextFormField(
                 controller: _categoryController,
-                decoration: const InputDecoration(labelText: 'Category'),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.category,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a category';
@@ -127,12 +148,32 @@ class _AddEditTransactionScreenState
               ),
               TextFormField(
                 controller: _noteController,
-                decoration: const InputDecoration(labelText: 'Note'),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.note,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      _attachmentPath != null
+                          ? 'File: ${_attachmentPath!.split('/').last}'
+                          : 'No file attached',
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: _pickFile,
+                    icon: const Icon(Icons.attach_file),
+                    label: const Text('Attach'),
+                  ),
+                ],
               ),
               const Spacer(),
               ElevatedButton(
                 onPressed: _saveTransaction,
-                child: const Text('Save'),
+                child: Text(AppLocalizations.of(context)!.save),
               ),
             ],
           ),

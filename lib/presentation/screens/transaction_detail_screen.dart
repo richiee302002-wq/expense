@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../../domain/entities/transaction_entity.dart';
 import '../viewmodels/transaction_list_viewmodel.dart';
 import 'add_edit_transaction_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TransactionDetailScreen extends ConsumerWidget {
   final TransactionEntity transaction;
@@ -16,7 +17,7 @@ class TransactionDetailScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Transaction Details'),
+        title: Text(AppLocalizations.of(context)!.transactionDetails),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -36,18 +37,18 @@ class TransactionDetailScreen extends ConsumerWidget {
               final confirm = await showDialog<bool>(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: const Text('Delete Transaction'),
-                  content: const Text(
-                    'Are you sure you want to delete this transaction?',
+                  title: Text(AppLocalizations.of(context)!.delete),
+                  content: Text(
+                    AppLocalizations.of(context)!.deleteConfirmation,
                   ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context, false),
-                      child: const Text('Cancel'),
+                      child: Text(AppLocalizations.of(context)!.cancel),
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context, true),
-                      child: const Text('Delete'),
+                      child: Text(AppLocalizations.of(context)!.delete),
                     ),
                   ],
                 ),
@@ -77,7 +78,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Amount',
+                      AppLocalizations.of(context)!.amount,
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     const SizedBox(height: 8),
@@ -96,18 +97,38 @@ class TransactionDetailScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 16),
-            _buildDetailRow(context, 'Category', transaction.category),
+            _buildDetailRow(
+              context,
+              AppLocalizations.of(context)!.category,
+              transaction.category,
+            ),
             const SizedBox(height: 16),
-            _buildDetailRow(context, 'Date', dateFormat.format(transaction.ts)),
+            _buildDetailRow(
+              context,
+              'Date',
+              dateFormat.format(transaction.ts),
+            ), // 'Date' key missed in arb
             if (transaction.note != null && transaction.note!.isNotEmpty) ...[
               const SizedBox(height: 16),
-              _buildDetailRow(context, 'Note', transaction.note!),
+              _buildDetailRow(
+                context,
+                AppLocalizations.of(context)!.note,
+                transaction.note!,
+              ),
+            ],
+            if (transaction.attachmentPath != null) ...[
+              const SizedBox(height: 16),
+              _buildDetailRow(
+                context,
+                'Attachment',
+                transaction.attachmentPath!.split('/').last,
+              ),
             ],
             const SizedBox(height: 16),
             _buildDetailRow(
               context,
-              'Status',
-              transaction.editedLocally ? 'Unsynced' : 'Synced',
+              'Status', // 'Status' key missed in arb
+              transaction.editedLocally ? 'Unsynced' : 'Synced', // Keys missed
             ),
           ],
         ),

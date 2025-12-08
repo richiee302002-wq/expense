@@ -4,17 +4,35 @@ import '../viewmodels/transaction_list_viewmodel.dart';
 import 'add_edit_transaction_screen.dart';
 import 'transaction_detail_screen.dart';
 import 'statistics_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class TransactionListScreen extends ConsumerWidget {
+import '../../services/deep_link_service.dart';
+
+class TransactionListScreen extends ConsumerStatefulWidget {
   const TransactionListScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<TransactionListScreen> createState() =>
+      _TransactionListScreenState();
+}
+
+class _TransactionListScreenState extends ConsumerState<TransactionListScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Initialize Deep Link Service
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      DeepLinkService(ref, context).init();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final transactionListState = ref.watch(transactionListProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Transactions'),
+        title: Text(AppLocalizations.of(context)!.transactionListTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.pie_chart),

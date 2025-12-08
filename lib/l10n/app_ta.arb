@@ -1,0 +1,22 @@
+{
+  "appTitle": "செலவு மேலாளர்",
+  "transactionListTitle": "பரிவர்த்தனைகள்",
+  "addTransaction": "பரிவர்த்தனையைச் சேர்",
+  "editTransaction": "பரிவர்த்தனையைத் திருத்து",
+  "amount": "தொகை",
+  "category": "வகை",
+  "note": "குறிப்பு",
+  "save": "சேமி",
+  "transactionDetails": "பரிவர்த்தனை விவரங்கள்",
+  "delete": "நீக்கு",
+  "deleteConfirmation": "இந்த பரிவர்த்தனையை நிச்சயமாக நீக்க விரும்புகிறீர்களா?",
+  "cancel": "ரத்துசெய்",
+  "syncing": "ஒத்திசைக்கிறது...",
+  "loginEnterPin": "உங்கள் பின்னை உள்ளிடவும்",
+  "loginSetPin": "4 இலக்க பின்னை அமைக்கவும்",
+  "loginConfirmPin": "உங்கள் பின்னை உறுதிப்படுத்தவும்",
+  "loginPinMismatch": "பின்கள் பொருந்தவில்லை. மீண்டும் முயற்சிக்கவும்.",
+  "loginIncorrectPin": "தவறான பின். மீண்டும் முயற்சிக்கவும்.",
+  "statistics": "புள்ளிவிவரங்கள்",
+  "totalExpenses": "மொத்த செலவுகள்"
+}
