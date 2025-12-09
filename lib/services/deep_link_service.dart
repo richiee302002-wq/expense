@@ -15,7 +15,7 @@ class DeepLinkService {
     _appLinks = AppLinks();
 
     // Check initial link
-    _appLinks.getInitialLink().then((uri) {
+    _appLinks.getInitialAppLink().then((uri) {
       if (uri != null) {
         _handleDeepLink(uri);
       }
