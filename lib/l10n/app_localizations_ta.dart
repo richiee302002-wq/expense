@@ -75,9 +75,9 @@ class AppLocalizationsTa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count Transactions',
-      one: '1 Transaction',
-      zero: 'No transactions',
+      other: '$count பரிவர்த்தனைகள்',
+      one: '1 பரிவர்த்தனை',
+      zero: 'பரிவர்த்தனைகள் இல்லை',
     );
     return '$_temp0';
   }

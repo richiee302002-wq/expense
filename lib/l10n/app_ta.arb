@@ -18,5 +18,6 @@
   "loginPinMismatch": "பின்கள் பொருந்தவில்லை. மீண்டும் முயற்சிக்கவும்.",
   "loginIncorrectPin": "தவறான பின். மீண்டும் முயற்சிக்கவும்.",
   "statistics": "புள்ளிவிவரங்கள்",
-  "totalExpenses": "மொத்த செலவுகள்"
+  "totalExpenses": "மொத்த செலவுகள்",
+  "transactionCount": "{count, plural, =0{பரிவர்த்தனைகள் இல்லை} =1{1 பரிவர்த்தனை} other{{count} பரிவர்த்தனைகள்}}"
 }
