@@ -18,5 +18,6 @@
   "loginPinMismatch": "PINs do not match. Try again.",
   "loginIncorrectPin": "Incorrect PIN. Try again.",
   "statistics": "Statistics",
-  "totalExpenses": "Total Expenses"
+  "totalExpenses": "Total Expenses",
+  "transactionCount": "{count, plural, =0{No transactions} =1{1 Transaction} other{{count} Transactions}}"
 }

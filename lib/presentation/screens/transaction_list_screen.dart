@@ -32,10 +32,20 @@ class _TransactionListScreenState extends ConsumerState<TransactionListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.transactionListTitle),
+        title: Text(
+          transactionListState.when(
+            data: (transactions) => AppLocalizations.of(
+              context,
+            )!.transactionCount(transactions.length),
+            loading: () => AppLocalizations.of(context)!.transactionListTitle,
+            error: (_, __) =>
+                AppLocalizations.of(context)!.transactionListTitle,
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.pie_chart),
+            tooltip: 'View Statistics',
             onPressed: () {
               Navigator.push(
                 context,
@@ -84,6 +94,7 @@ class _TransactionListScreenState extends ConsumerState<TransactionListScreen> {
             ),
           );
         },
+        tooltip: AppLocalizations.of(context)!.addTransaction,
         child: const Icon(Icons.add),
       ),
     );

@@ -22,6 +22,26 @@ class NotificationService {
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
+  Future<void> showDailyReminder() async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+          'daily_reminder_channel',
+          'Daily Reminders',
+          channelDescription: 'Daily reminder to log expenses',
+          importance: Importance.max,
+          priority: Priority.high,
+        );
+    const NotificationDetails platformChannelSpecifics = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+    );
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Daily Reminder',
+      'Don\'t forget to log your expenses today!',
+      platformChannelSpecifics,
+    );
+  }
+
   Future<void> scheduleDailyNotification() async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
       0,

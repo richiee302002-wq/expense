@@ -217,6 +217,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Total Expenses'**
   String get totalExpenses;
+
+  /// No description provided for @transactionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No transactions} =1{1 Transaction} other{{count} Transactions}}'**
+  String transactionCount(num count);
 }
 
 class _AppLocalizationsDelegate

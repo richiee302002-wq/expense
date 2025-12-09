@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:expense_tracker/l10n/app_localizations.dart';
 import 'package:expense_tracker/core/di/providers.dart';
 import 'package:expense_tracker/domain/entities/transaction_entity.dart';
 import 'package:expense_tracker/domain/repositories/transaction_repository.dart';
@@ -29,7 +30,11 @@ void main() {
         overrides: [
           transactionRepositoryProvider.overrideWithValue(mockRepository),
         ],
-        child: const MaterialApp(home: TransactionListScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: TransactionListScreen(),
+        ),
       ),
     );
 
@@ -58,7 +63,11 @@ void main() {
         overrides: [
           transactionRepositoryProvider.overrideWithValue(mockRepository),
         ],
-        child: const MaterialApp(home: TransactionListScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: TransactionListScreen(),
+        ),
       ),
     );
 
@@ -76,7 +85,11 @@ void main() {
         overrides: [
           transactionRepositoryProvider.overrideWithValue(mockRepository),
         ],
-        child: const MaterialApp(home: TransactionListScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: TransactionListScreen(),
+        ),
       ),
     );
 

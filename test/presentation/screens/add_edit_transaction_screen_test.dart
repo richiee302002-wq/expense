@@ -1,3 +1,4 @@
+import 'package:expense_tracker/l10n/app_localizations.dart';
 import 'package:expense_tracker/core/di/providers.dart';
 import 'package:expense_tracker/domain/repositories/transaction_repository.dart';
 import 'package:expense_tracker/presentation/screens/add_edit_transaction_screen.dart';
@@ -23,7 +24,11 @@ void main() {
         overrides: [
           transactionRepositoryProvider.overrideWithValue(mockRepository),
         ],
-        child: const MaterialApp(home: AddEditTransactionScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: AddEditTransactionScreen(),
+        ),
       ),
     );
 
@@ -41,7 +46,11 @@ void main() {
         overrides: [
           transactionRepositoryProvider.overrideWithValue(mockRepository),
         ],
-        child: const MaterialApp(home: AddEditTransactionScreen()),
+        child: const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: AddEditTransactionScreen(),
+        ),
       ),
     );
 

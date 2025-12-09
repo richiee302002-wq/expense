@@ -167,6 +167,9 @@ class _AddEditTransactionScreenState
                     onPressed: _pickFile,
                     icon: const Icon(Icons.attach_file),
                     label: const Text('Attach'),
+                    style: TextButton.styleFrom(
+                      // Add visual cue if needed
+                    ),
                   ),
                 ],
               ),

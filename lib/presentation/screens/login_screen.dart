@@ -96,6 +96,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 32),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Email (Optional)',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              const SizedBox(height: 16),
               TextField(
                 controller: _pinController,
                 keyboardType: TextInputType.number,

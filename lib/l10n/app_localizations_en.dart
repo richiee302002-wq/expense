@@ -68,4 +68,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get totalExpenses => 'Total Expenses';
+
+  @override
+  String transactionCount(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Transactions',
+      one: '1 Transaction',
+      zero: 'No transactions',
+    );
+    return '$_temp0';
+  }
 }
