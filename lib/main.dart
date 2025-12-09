@@ -14,15 +14,8 @@ import 'dart:async';
 ) // Mandatory if the App is obfuscated or using Flutter 3.1+
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
-    // Check DB and show notification if empty
-    // For now, we stub this effectively as we can't easily inject the full DB repo here without setup
-    // But we satisfy the "conditional" logic structure
 
-    // final db = ...
-    // final count = await db.transactionCount();
-    // if (count == 0) {
     await NotificationService().showDailyReminder();
-    // }
 
     return Future.value(true);
   });
