@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uni_links/uni_links.dart';
+import 'package:app_links/app_links.dart';
 import '../core/di/providers.dart';
 import '../presentation/screens/transaction_detail_screen.dart';
 
 class DeepLinkService {
   final WidgetRef ref;
   final BuildContext context;
+  late final AppLinks _appLinks;
 
   DeepLinkService(this.ref, this.context);
 
   void init() {
+    _appLinks = AppLinks();
+
     // Check initial link
-    getInitialUri().then((uri) {
+    _appLinks.getInitialLink().then((uri) {
       if (uri != null) {
         _handleDeepLink(uri);
       }
     });
 
     // Listen for incoming links
-    uriLinkStream.listen((uri) {
-      if (uri != null) {
-        _handleDeepLink(uri);
-      }
+    _appLinks.uriLinkStream.listen((uri) {
+      _handleDeepLink(uri);
     });
   }
 
