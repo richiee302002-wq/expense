@@ -1,23 +1,32 @@
-import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uni_links/uni_links.dart';
 import '../core/di/providers.dart';
 import '../presentation/screens/transaction_detail_screen.dart';
 
 class DeepLinkService {
-  final AppLinks _appLinks = AppLinks();
   final WidgetRef ref;
   final BuildContext context;
 
   DeepLinkService(this.ref, this.context);
 
   void init() {
-    _appLinks.uriLinkStream.listen((uri) {
-      _handleDeepLink(uri);
+    // Check initial link
+    getInitialUri().then((uri) {
+      if (uri != null) {
+        _handleDeepLink(uri);
+      }
+    });
+
+    // Listen for incoming links
+    uriLinkStream.listen((uri) {
+      if (uri != null) {
+        _handleDeepLink(uri);
+      }
     });
   }
 
-  void _handleDeepLink(Uri uri) async {
+  void _handleDeepLink(Uri uri) {
     // Expected format: app://tx/{id}
     if (uri.host == 'tx' && uri.pathSegments.isNotEmpty) {
       final transactionId = uri.pathSegments.first;
@@ -27,11 +36,6 @@ class DeepLinkService {
 
   Future<void> _navigateToTransaction(String id) async {
     try {
-      // Fetch transaction from repository
-      // Note: This requires a method to get transaction by ID which might not exist in Repo yet
-      // Or we can rely on the list if loaded. For now, let's assume valid ID.
-      // Actually, we need to fetch it.
-
       final repo = ref.read(transactionRepositoryProvider);
       final transactions = await repo.getTransactions();
 
