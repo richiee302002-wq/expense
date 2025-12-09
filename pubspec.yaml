@@ -61,7 +61,7 @@ dependencies:
   workmanager: ^0.5.1
   
   # Deep Links
-  app_links: ^3.4.0
+  app_links: 3.4.0
   
   # File Picker
   file_picker: ^5.3.0
