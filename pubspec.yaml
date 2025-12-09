@@ -73,7 +73,7 @@ dependencies:
   # Localization
   flutter_localizations:
     sdk: flutter
-  intl: ^0.20.2
+  intl: ^0.18.1
   easy_localization: ^3.0.3
   
   # Crash Handling
