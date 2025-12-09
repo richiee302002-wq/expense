@@ -63,8 +63,7 @@ class _AddEditTransactionScreenState
       final category = _categoryController.text;
       final note = _noteController.text;
 
-      final transaction =
-          widget.transaction?.copyWith(
+      final transaction = widget.transaction?.copyWith(
             amount: amount,
             category: category,
             note: note,
@@ -73,7 +72,7 @@ class _AddEditTransactionScreenState
             editedLocally: true,
           ) ??
           TransactionEntity(
-            id: const Uuid().v4(),
+            id: Uuid().v4(),
             amount: amount,
             category: category,
             ts: DateTime.now(),
@@ -168,8 +167,8 @@ class _AddEditTransactionScreenState
                     icon: const Icon(Icons.attach_file),
                     label: const Text('Attach'),
                     style: TextButton.styleFrom(
-                      // Add visual cue if needed
-                    ),
+                        // Add visual cue if needed
+                        ),
                   ),
                 ],
               ),
