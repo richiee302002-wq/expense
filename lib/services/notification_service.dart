@@ -25,12 +25,12 @@ class NotificationService {
   Future<void> showDailyReminder() async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-          'daily_reminder_channel',
-          'Daily Reminders',
-          channelDescription: 'Daily reminder to log expenses',
-          importance: Importance.max,
-          priority: Priority.high,
-        );
+      'daily_reminder_channel',
+      'Daily Reminders',
+      channelDescription: 'Daily reminder to log expenses',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
     const NotificationDetails platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
     );
@@ -55,7 +55,9 @@ class NotificationService {
           channelDescription: 'Daily reminder to log expenses',
         ),
       ),
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }
